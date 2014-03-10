@@ -1,5 +1,5 @@
 <xsl:stylesheet xmlns:xsl = "http://www.w3.org/1999/XSL/Transform" version = "1.0" >
-  <xsl:output omit-xml-declaration="no" method="html" doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" indent="yes" encoding="UTF-8" />
+  <xsl:output method="html" encoding="utf-8" doctype-system="about:legacy-compat" media-type="text/html"/>
   <xsl:template match = "/icestats" >
     <html>
     <head>
@@ -9,7 +9,7 @@
     </head>
     <body>
     <div class="container">
-    <!--index header menu -->
+      <!--index header menu -->
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li><a href="admin/">Administration</a></li>
@@ -25,21 +25,23 @@
         <xsl:choose>
           <xsl:when test="listeners">
             <div class="panel panel-default">
-              <div class="panel-heading">Mount Point <xsl:value-of select="@mount" /></div>
-              <div class="panel-body">
+              <div class="panel-heading">
+                Mount Point <var><xsl:value-of select="@mount" /></var>
                 <div class="pull-right">
                   <xsl:choose>
                     <xsl:when test="authenticator">
-                      <a href="/auth.xsl" class="btn btn-danger"><span class="glyphicon glyphicon-lock"></span>Login</a>
+                      <a href="/auth.xsl" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-lock"></span>Login</a>
                     </xsl:when>
                     <xsl:otherwise>
-                      <a href="{@mount}.m3u" class="btn btn-default" role="button"><span class="glyphicon glyphicon-file"></span>.m3u</a>
-                      <a href="{@mount}.pls" class="btn btn-default" role="button"><span class="glyphicon glyphicon-file"></span>.pls</a>
-                      <a href="{@mount}.xspf" class="btn btn-default" role="button"><span class="glyphicon glyphicon-file"></span><abbr title="XML Shareable Playlist Format">.xspf</abbr></a>
-                      <!--a href="{@mount}.vclt" class="btn btn-default" role="button"><span class="glyphicon glyphicon-file"></span>VCLT</a-->
+                      <a href="{@mount}.m3u" class="btn btn-default btn-xs" role="button"><span class="glyphicon glyphicon-file"></span>.m3u</a>
+                      <a href="{@mount}.pls" class="btn btn-default btn-xs" role="button"><span class="glyphicon glyphicon-file"></span>.pls</a>
+                      <a href="{@mount}.xspf" class="btn btn-default btn-xs" role="button"><span class="glyphicon glyphicon-file"></span><abbr title="XML Shareable Playlist Format">.xspf</abbr></a>
+                      <a href="{@mount}.vclt" class="btn btn-default btn-xs" role="button"><span class="glyphicon glyphicon-file"></span><abbr title="Vorbis Comment Like Text">VCLT</abbr></a>
                     </xsl:otherwise>
                   </xsl:choose>
                 </div>
+              </div>
+              <div class="panel-body">
                 <dl class="dl-horizontal">
                   <xsl:if test="server_name">
                     <dt>Title:</dt>
