@@ -4,7 +4,8 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <title>Icecast Streaming Media Server</title>
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" id="theme" />
     <link rel="stylesheet" type="text/css" href="/style.css" />
     </head>
     <body>
@@ -40,7 +41,7 @@
             </xsl:if>
           </div>
           <div class="panel-body">
-            <div>
+            <div class="btn-group" role="group" aria-label="Manage stream">
               <a href="listclients.xsl?mount={@mount}" class="btn btn-primary"><span class="glyphicon glyphicon-list"></span>List Clients</a>
               <a href="moveclients.xsl?mount={@mount}" class="btn btn-warning"><span class="glyphicon glyphicon-transfer"></span>Move Listeners</a>
               <a href="updatemetadata.xsl?mount={@mount}" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span>Update Metadata</a>

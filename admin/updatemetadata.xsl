@@ -4,7 +4,8 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <title>Icecast Streaming Media Server</title>
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" id="theme" />
     <link rel="stylesheet" type="text/css" href="/style.css" />
     </head>
     <body>

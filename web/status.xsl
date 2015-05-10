@@ -4,7 +4,9 @@
     <html>
     <head>
     <title>Icecast Streaming Media Server</title>
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" id="theme" />
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
@@ -24,7 +26,7 @@
       <xsl:for-each select="source">
         <xsl:choose>
           <xsl:when test="listeners">
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="">
               <div class="panel-heading">
                 Mount Point <var><xsl:value-of select="@mount" /></var>
                 <div class="pull-right">
@@ -33,10 +35,12 @@
                       <a href="/auth.xsl" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-lock"></span>Login</a>
                     </xsl:when>
                     <xsl:otherwise>
-                      <a href="{@mount}.m3u" class="btn btn-default btn-xs" role="button"><span class="glyphicon glyphicon-file"></span>.m3u</a>
-                      <a href="{@mount}.pls" class="btn btn-default btn-xs" role="button"><span class="glyphicon glyphicon-file"></span>.pls</a>
-                      <a href="{@mount}.xspf" class="btn btn-default btn-xs" role="button"><span class="glyphicon glyphicon-file"></span><abbr title="XML Shareable Playlist Format">.xspf</abbr></a>
-                      <a href="{@mount}.vclt" class="btn btn-default btn-xs" role="button"><span class="glyphicon glyphicon-file"></span><abbr title="Vorbis Comment Like Text">VCLT</abbr></a>
+                      <div class="btn-group" role="group" aria-label="Stream Format">
+                        <a href="{@mount}.m3u" class="btn btn-default btn-xs" role="button"><span class="fa fa-file-audio-o"></span>.m3u</a>
+                        <a href="{@mount}.pls" class="btn btn-default btn-xs" role="button"><span class="fa fa-file-text-o"></span>.pls</a>
+                        <a href="{@mount}.xspf" class="btn btn-default btn-xs" role="button"><span class="fa fa-file-code-o"></span><abbr title="XML Shareable Playlist Format">.xspf</abbr></a>
+                        <a href="{@mount}.vclt" class="btn btn-default btn-xs" role="button"><span class="fa fa-file-o"></span><abbr title="Vorbis Comment Like Text">VCLT</abbr></a>
+                      </div>
                     </xsl:otherwise>
                   </xsl:choose>
                 </div>
