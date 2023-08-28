@@ -1,0 +1,11 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css');
+
+main > .container {
+  padding: 60px 15px 0;
+}
+
+.bi {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
