@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
         <meta name="theme-color" content="#001826" />
         <title>Icecast Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"></link>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha256-MBffSnbbXwHCuZtgPYiwMQbfE7z+GOZ7fBPCNB06Z98=" crossorigin="anonymous" />
         <link href="/assets/style.css" rel="stylesheet" />
       </head>
 
@@ -94,7 +94,8 @@
             <div class="container-fluid">
               <a class="navbar-brand" href="/admin/">
                 <img src="/assets/img/icecast.png" width="32" height="32" class="me-3" alt="Icecast" />
-Icecast Server administration</a>
+                Icecast Server administration
+              </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -135,126 +136,134 @@ Icecast Server administration</a>
                 </ul>
               </div>
             </xsl:if>
-
             <xsl:for-each select="source">
               <div class="card">
-                <h2 class="card-header">Mountpoint <var>
-                  <xsl:value-of select="@mount" />
-                </var>
-                <xsl:if test="server_name">
-                  <small>
-                    <xsl:value-of select="server_name" />
-                  </small>
-                </xsl:if>
-              </h2>
-              <div class="card-body">
-                <div class="d-flex  justify-content-between">
-                  <div class="btn-group" aria-label="Manage stream">
-                    <a href="listclients.xsl?mount={@mount}" class="btn btn-primary" role="button">
-                      <svg class="bi mr-3">
-                        <use href="#bi-card-list" />
-                      </svg>List Clients</a>
-                    <a href="moveclients.xsl?mount={@mount}" class="btn btn-secondary" role="button">
-                      <svg class="bi mr-3">
-                        <use href="#bi-ear" />
-                      </svg>Move Listeners</a>
-                    <a href="updatemetadata.xsl?mount={@mount}" class="btn btn-info" role="button">
-                      <svg class="bi mr-3">
-                        <use href="#bi-arrow-clockwise" />
-                      </svg>Update Metadata</a>
-                    <a href="manageauth.xsl?mount={@mount}" class="btn btn-warning" role="button">
-                      <svg class="bi mr-3">
-                        <use href="#bi-gear-fill" />
-                      </svg>Manage Authentication</a>
-                    <a href="killsource.xsl?mount={@mount}" class="btn btn-danger" role="button">
-                      <svg class="bi mr-3">
-                        <use href="#bi-trash-fill" />
-                      </svg>Kill Source</a>
-                  </div>
-                  <div>
-                    <audio controls="controls" preload="none">
-                      <source src="{@mount}" type="{server_type}" />
-                    </audio>
-                  </div>
-                </div>
-                <xsl:if test="User">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">User</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <xsl:variable name="themount">
-                        <xsl:value-of select="@mount" />
-                      </xsl:variable>
-                      <xsl:for-each select="User">
-                        <tr>
-                          <td>
-                            <xsl:value-of select="username" />
-                          </td>
-                          <td>
-                            <a href="manageauth.xsl?mount={$themount}&amp;username={username}&amp;action=delete" class="btn btn-danger" role="button">
-                              <svg class="bi mr-3">
-                                <use href="#bi-dash" />
-                              </svg>Delete</a>
-                          </td>
-                        </tr>
-                      </xsl:for-each>
-                    </tbody>
-                  </table>
-                </xsl:if>
-
-                <div class="card">
-                  <h2 class="card-title">Add new user</h2>
-                  <div class="card-body">
-                    <form method="get" action="/admin/manageauth.xsl">
-                      <input type="hidden" name="mount" value="{@mount}" />
-                      <input type="hidden" name="action" value="add" />
-                      <label for="username" class="col-sm-2 col-form-label">Username:</label>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text" id="username-addon">
-                          <svg class="bi">
-                            <use href="#bi-person-fill" />
-                          </svg>
-                        </span>
-                        <input type="text" id="username" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="username-addon" />
-                      </div>
-                      <label for="password" class="col-sm-2 col-form-label">Password:</label>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text" id="password-addon">
-                          <svg class="bi">
-                            <use href="#bi-key-fill" />
-                          </svg>
-                        </span>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="password" aria-label="Password" aria-describedby="password-addon" />
-                      </div>
-                      <button type="submit" class="btn btn-primary">
+                <h2 class="card-header">Mountpoint
+                  <var>
+                    <xsl:value-of select="@mount" />
+                  </var>
+                  <xsl:if test="server_name">
+                    <small>
+                      <xsl:value-of select="server_name" />
+                    </small>
+                  </xsl:if>
+                </h2>
+                <div class="card-body">
+                  <div class="d-flex  justify-content-between">
+                    <div class="btn-group" aria-label="Manage stream">
+                      <a href="listclients.xsl?mount={@mount}" class="btn btn-primary" role="button">
                         <svg class="bi mr-3">
-                          <use href="#bi-plus" />
-                        </svg>Add</button>
-                    </form>
+                          <use href="#bi-card-list" />
+                        </svg>List Clients
+                      </a>
+                      <a href="moveclients.xsl?mount={@mount}" class="btn btn-secondary" role="button">
+                        <svg class="bi mr-3">
+                          <use href="#bi-ear" />
+                        </svg>Move Listeners
+                      </a>
+                      <a href="updatemetadata.xsl?mount={@mount}" class="btn btn-info" role="button">
+                        <svg class="bi mr-3">
+                          <use href="#bi-arrow-clockwise" />
+                        </svg>Update Metadata
+                      </a>
+                      <a href="manageauth.xsl?mount={@mount}" class="btn btn-warning" role="button">
+                        <svg class="bi mr-3">
+                          <use href="#bi-gear-fill" />
+                        </svg>Manage Authentication
+                      </a>
+                      <a href="killsource.xsl?mount={@mount}" class="btn btn-danger" role="button">
+                        <svg class="bi mr-3">
+                          <use href="#bi-trash-fill" />
+                        </svg>Kill Source
+                      </a>
+                    </div>
+                    <div>
+                      <audio controls="controls" preload="none">
+                        <source src="{@mount}" type="{server_type}" />
+                      </audio>
+                    </div>
+                  </div>
+                  <xsl:if test="User">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">User</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <xsl:variable name="themount">
+                          <xsl:value-of select="@mount" />
+                        </xsl:variable>
+                        <xsl:for-each select="User">
+                          <tr>
+                            <td>
+                              <xsl:value-of select="username" />
+                            </td>
+                            <td>
+                              <a href="manageauth.xsl?mount={$themount}&amp;username={username}&amp;action=delete" class="btn btn-danger" role="button">
+                                <svg class="bi mr-3">
+                                  <use href="#bi-dash" />
+                                </svg>Delete
+                              </a>
+                            </td>
+                          </tr>
+                        </xsl:for-each>
+                      </tbody>
+                    </table>
+                  </xsl:if>
+                  <div class="card">
+                    <h2 class="card-title">Add new user</h2>
+                    <div class="card-body">
+                      <form method="get" action="/admin/manageauth.xsl">
+                        <input type="hidden" name="mount" value="{@mount}" />
+                        <input type="hidden" name="action" value="add" />
+                        <label for="username" class="col-sm-2 col-form-label">Username:</label>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="username-addon">
+                            <svg class="bi">
+                              <use href="#bi-person-fill" />
+                            </svg>
+                          </span>
+                          <input type="text" id="username" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="username-addon" />
+                        </div>
+                        <label for="password" class="col-sm-2 col-form-label">Password:</label>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="password-addon">
+                            <svg class="bi">
+                              <use href="#bi-key-fill" />
+                            </svg>
+                          </span>
+                          <input type="password" id="password" name="password" class="form-control" placeholder="password" aria-label="Password" aria-describedby="password-addon" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                          <svg class="bi mr-3">
+                            <use href="#bi-plus" />
+                          </svg>Add
+                        </button>
+                      </form>
+                    </div>
                   </div>
                 </div>
-
               </div>
-            </div>
-          </xsl:for-each>
-        </div>
-      </main>
+            </xsl:for-each>
+          </div>
+        </main>
 
-      <footer class="footer mt-auto py-3 bg-body-tertiary">
-        <div class="container">
-          <span class="text-body-secondary">Support icecast development at <a href="https://www.icecast.org/">www.icecast.org</a>
-            /
-            <a href="https://github.com/logue/icecast2-bootstrap-theme">Icecast bootstrap theme</a> by <a href="https://logue.dev">Logue</a>
-          </span>
-        </div>
-      </footer>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-      <script src="/assets/scripts.js"></script>
-    </body>
-  </html>
-</xsl:template>
+        <footer class="footer mt-auto py-3 bg-body-tertiary">
+          <div class="container">
+            <span class="text-body-secondary">Support icecast development at
+              <a href="https://www.icecast.org/">www.icecast.org</a>
+              /
+              <a href="https://github.com/logue/icecast2-bootstrap-theme">Icecast bootstrap theme</a> by
+              <a href="https://logue.dev">Logue</a>
+            </span>
+          </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha256-gvZPYrsDwbwYJLD5yeBfcNujPhRoGOY831wwbIzz3t0=" crossorigin="anonymous"></script>
+        <script src="/assets/scripts.js"></script>
+      </body>
+    </html>
+  </xsl:template>
 </xsl:stylesheet>

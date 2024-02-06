@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
         <meta name="theme-color" content="#001826" />
         <title>Icecast Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"></link>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha256-MBffSnbbXwHCuZtgPYiwMQbfE7z+GOZ7fBPCNB06Z98=" crossorigin="anonymous" />
         <link href="/assets/style.css" rel="stylesheet" />
       </head>
 
@@ -94,7 +94,8 @@
             <div class="container-fluid">
               <a class="navbar-brand" href="/admin/">
                 <img src="/assets/img/icecast.png" width="32" height="32" class="me-3" alt="Icecast" />
-Icecast Server administration </a>
+                Icecast Server administration
+              </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -129,116 +130,128 @@ Icecast Server administration </a>
               <xsl:when test="source">
                 <xsl:for-each select="source">
                   <div class="card my-3">
-                    <h2 class="card-header">Mount Point <var>
-                      <xsl:value-of select="@mount" />
-                    </var>
-                  </h2>
-                  <div class="card-body">
-                    <div class="btn-group" aria-label="Manage stream">
-                      <a href="listclients.xsl?mount={@mount}" class="btn btn-primary" role="button">
-                        <svg class="bi mr-3">
-                          <use href="#bi-card-list" />
-                        </svg>List Clients</a>
-                      <a href="moveclients.xsl?mount={@mount}" class="btn btn-secondary" role="button">
-                        <svg class="bi mr-3">
-                          <use href="#bi-ear" />
-                        </svg>Move Listeners</a>
-                      <a href="updatemetadata.xsl?mount={@mount}" class="btn btn-info" role="button">
-                        <svg class="bi mr-3">
-                          <use href="#bi-arrow-clockwise" />
-                        </svg>Update Metadata</a>
-                      <xsl:if test="authenticator">
-                        <a href="manageauth.xsl?mount={@mount}" class="btn btn-warning" role="button">
+                    <h2 class="card-header">Mount Point
+                      <var>
+                        <xsl:value-of select="@mount" />
+                      </var>
+                    </h2>
+                    <div class="card-body">
+                      <div class="btn-group" aria-label="Manage stream">
+                        <a href="listclients.xsl?mount={@mount}" class="btn btn-primary" role="button">
                           <svg class="bi mr-3">
-                            <use href="#bi-gear-fill" />
-                          </svg>Manage Authentication</a>
-                      </xsl:if>
-                      <a href="killsource.xsl?mount={@mount}" class="btn btn-danger" role="button">
-                        <svg class="bi mr-3">
-                          <use href="#bi-trash-fill" />
-                        </svg>Kill Source</a>
-                    </div>
-                    <!-- information and player -->
-                    <div class="d-flex justify-content-between">
-                      <div>
-                        <table class="table">
-                          <tbody>
-                            <xsl:for-each select="*">
-                              <tr>
-                                <th scope="row">
-                                  <xsl:value-of select="name()" />
-                                </th>
-                                <td>
-                                  <xsl:value-of select="." />
-                                </td>
-                              </tr>
-                            </xsl:for-each>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <audio controls="controls" preload="none">
-                          <source src="{@mount}" type="{server_type}" />
-                        </audio>
-                      </div>
-                    </div>
-                    <!-- /information and player -->
-                  </div>
-                  <div class="card-footer text-end">
-                    <div class="btn-group" role="group" aria-label="Stream Format">
-                      <xsl:choose>
-                        <xsl:when test="authenticator">
-                          <a href="/auth.xsl" class="btn btn-warning btn-sm" role="button">
+                            <use href="#bi-card-list" />
+                          </svg>List Clients
+                        </a>
+                        <a href="moveclients.xsl?mount={@mount}" class="btn btn-secondary" role="button">
+                          <svg class="bi mr-3">
+                            <use href="#bi-ear" />
+                          </svg>Move Listeners
+                        </a>
+                        <a href="updatemetadata.xsl?mount={@mount}" class="btn btn-info" role="button">
+                          <svg class="bi mr-3">
+                            <use href="#bi-arrow-clockwise" />
+                          </svg>Update Metadata
+                        </a>
+                        <xsl:if test="authenticator">
+                          <a href="manageauth.xsl?mount={@mount}" class="btn btn-warning" role="button">
                             <svg class="bi mr-3">
-                              <use href="#bi-box-arrow-in-right" />
-                            </svg>Login</a>
-                        </xsl:when>
-                        <xsl:otherwise>
-                          <a href="{@mount}.m3u" class="btn btn-outline-primary btn-sm" role="button">
-                            <svg class="bi mr-3">
-                              <use href="#bi-file-earmark-music" />
-                            </svg>.m3u</a>
-                          <a href="{@mount}.pls" class="btn btn-outline-primary btn-sm" role="button">
-                            <svg class="bi mr-3">
-                              <use href="#bi-music-note-list" />
-                            </svg>.pls</a>
-                          <a href="{@mount}.xspf" class="btn btn-outline-primary btn-sm" role="button">
-                            <svg class="bi mr-3">
-                              <use href="#bi-filetype-xml" />
-                            </svg>
-                            <abbr data-bs-toggle="tooltip" title="XML Shareable Playlist Format">.xspf</abbr>
+                              <use href="#bi-gear-fill" />
+                            </svg>Manage Authentication
                           </a>
-                          <a href="{@mount}.vclt" class="btn btn-outline-primary btn-sm" role="button">
-                            <svg class="bi mr-3">
-                              <use href="#bi-filetype-xml" />
-                            </svg>
-                            <abbr data-bs-toggle="tooltip" title="Vorbis Comment Like Text">VCLT</abbr>
-                          </a>
-                        </xsl:otherwise>
-                      </xsl:choose>
+                        </xsl:if>
+                        <a href="killsource.xsl?mount={@mount}" class="btn btn-danger" role="button">
+                          <svg class="bi mr-3">
+                            <use href="#bi-trash-fill" />
+                          </svg>Kill Source
+                        </a>
+                      </div>
+                      <!-- information and player -->
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <table class="table">
+                            <tbody>
+                              <xsl:for-each select="*">
+                                <tr>
+                                  <th scope="row">
+                                    <xsl:value-of select="name()" />
+                                  </th>
+                                  <td>
+                                    <xsl:value-of select="." />
+                                  </td>
+                                </tr>
+                              </xsl:for-each>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div>
+                          <audio controls="controls" preload="none">
+                            <source src="{@mount}" type="{server_type}" />
+                          </audio>
+                        </div>
+                      </div>
+                      <!-- /information and player -->
+                    </div>
+                    <div class="card-footer text-end">
+                      <div class="btn-group" role="group" aria-label="Stream Format">
+                        <xsl:choose>
+                          <xsl:when test="authenticator">
+                            <a href="/auth.xsl" class="btn btn-warning btn-sm" role="button">
+                              <svg class="bi mr-3">
+                                <use href="#bi-box-arrow-in-right" />
+                              </svg>Login
+                            </a>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <a href="{@mount}.m3u" class="btn btn-outline-primary btn-sm" role="button">
+                              <svg class="bi mr-3">
+                                <use href="#bi-file-earmark-music" />
+                              </svg>.m3u
+                            </a>
+                            <a href="{@mount}.pls" class="btn btn-outline-primary btn-sm" role="button">
+                              <svg class="bi mr-3">
+                                <use href="#bi-music-note-list" />
+                              </svg>.pls
+                            </a>
+                            <a href="{@mount}.xspf" class="btn btn-outline-primary btn-sm" role="button">
+                              <svg class="bi mr-3">
+                                <use href="#bi-filetype-xml" />
+                              </svg>
+                              <abbr data-bs-toggle="tooltip" title="XML Shareable Playlist Format">.xspf</abbr>
+                            </a>
+                            <a href="{@mount}.vclt" class="btn btn-outline-primary btn-sm" role="button">
+                              <svg class="bi mr-3">
+                                <use href="#bi-filetype-xml" />
+                              </svg>
+                              <abbr data-bs-toggle="tooltip" title="Vorbis Comment Like Text">VCLT</abbr>
+                            </a>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </xsl:for-each>
-            </xsl:when>
-            <xsl:otherwise>
-              <div class="alert alert-info" role="alert">No active mount points.</div>
-            </xsl:otherwise>
-          </xsl:choose>
-        </div>
-      </main>
+                </xsl:for-each>
+              </xsl:when>
+              <xsl:otherwise>
+                <div class="alert alert-info" role="alert">No active mount points.</div>
+              </xsl:otherwise>
+            </xsl:choose>
+          </div>
+        </main>
 
-      <footer class="footer mt-auto py-3 bg-body-tertiary">
-        <div class="container">
-          <span class="text-body-secondary">Support icecast development at <a href="https://www.icecast.org/">www.icecast.org</a>
-            /
-            <a href="https://github.com/logue/icecast2-bootstrap-theme">Icecast bootstrap theme</a> by <a href="https://logue.dev">Logue</a>
-          </span>
-        </div>
-      </footer>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-      <script src="/assets/scripts.js"></script>
-    </body>
-  </html>
-</xsl:template>
+        <footer class="footer mt-auto py-3 bg-body-tertiary">
+          <div class="container">
+            <span class="text-body-secondary">Support icecast development at
+              <a href="https://www.icecast.org/">www.icecast.org</a>
+              /
+              <a href="https://github.com/logue/icecast2-bootstrap-theme">Icecast bootstrap theme</a> by
+              <a href="https://logue.dev">Logue</a>
+            </span>
+          </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha256-gvZPYrsDwbwYJLD5yeBfcNujPhRoGOY831wwbIzz3t0=" crossorigin="anonymous"></script>
+        <script src="/assets/scripts.js"></script>
+      </body>
+    </html>
+  </xsl:template>
 </xsl:stylesheet>

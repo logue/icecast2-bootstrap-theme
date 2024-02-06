@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
         <meta name="theme-color" content="#001826" />
         <title>Icecast Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"></link>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha256-MBffSnbbXwHCuZtgPYiwMQbfE7z+GOZ7fBPCNB06Z98=" crossorigin="anonymous" />
         <link href="/assets/style.css" rel="stylesheet" />
       </head>
 
@@ -72,14 +72,15 @@
             <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
           </symbol>
         </svg>
-
         <!-- index header menu -->
+
         <header>
           <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
               <a class="navbar-brand" href="/admin/">
                 <img src="/assets/img/icecast.png" width="32" height="32" class="me-3" alt="Icecast" />
-Icecast Server administration </a>
+                Icecast Server administration
+              </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -113,42 +114,46 @@ Icecast Server administration </a>
             <xsl:for-each select="source">
               <section class="my-3">
                 <div class="card">
-                  <h2 class="card-header">Mountpoint <xsl:value-of select="@mount" />
-                  <xsl:if test="server_name">
-                    <small>
-                      <xsl:value-of select="server_name" />
-                    </small>
-                  </xsl:if>
-                </h2>
-                <div class="card-body">
-                  <form method="get" action="/admin/metadata.xsl">
-                    <input type="hidden" name="mount" value="{@mount}" />
-                    <input type="hidden" name="mode" value="updinfo" />
-                    <input type="hidden" name="charset" value="UTF-8" />
-                    <div class="mb-3">
-                      <label for="song" class="form-label">Metadata:</label>
-                      <input type="text" class="form-control" id="song" name="song"/>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                  </form>
+                  <h2 class="card-header">Mountpoint
+                    <xsl:value-of select="@mount" />
+                    <xsl:if test="server_name">
+                      <small>
+                        <xsl:value-of select="server_name" />
+                      </small>
+                    </xsl:if>
+                  </h2>
+                  <div class="card-body">
+                    <form method="get" action="/admin/metadata.xsl">
+                      <input type="hidden" name="mount" value="{@mount}" />
+                      <input type="hidden" name="mode" value="updinfo" />
+                      <input type="hidden" name="charset" value="UTF-8" />
+                      <div class="mb-3">
+                        <label for="song" class="form-label">Metadata:</label>
+                        <input type="text" class="form-control" id="song" name="song"/>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                  </div>
                 </div>
-              </div>
-            </section>
-          </xsl:for-each>
-        </div>
-      </main>
+              </section>
+            </xsl:for-each>
+          </div>
+        </main>
 
-      <footer class="footer mt-auto py-3 bg-body-tertiary">
-        <div class="container">
-          <span class="text-body-secondary">Support icecast development at <a href="https://www.icecast.org/">www.icecast.org</a>
-            /
-            <a href="https://github.com/logue/icecast2-bootstrap-theme">Icecast bootstrap theme</a> by <a href="https://logue.dev">Logue</a>
-          </span>
-        </div>
-      </footer>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-      <script src="/assets/scripts.js"></script>
-    </body>
-  </html>
-</xsl:template>
+        <footer class="footer mt-auto py-3 bg-body-tertiary">
+          <div class="container">
+            <span class="text-body-secondary">Support icecast development at
+              <a href="https://www.icecast.org/">www.icecast.org</a>
+              /
+              <a href="https://github.com/logue/icecast2-bootstrap-theme">Icecast bootstrap theme</a> by
+              <a href="https://logue.dev">Logue</a>
+            </span>
+          </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha256-gvZPYrsDwbwYJLD5yeBfcNujPhRoGOY831wwbIzz3t0=" crossorigin="anonymous"></script>
+        <script src="/assets/scripts.js"></script>
+      </body>
+    </html>
+  </xsl:template>
 </xsl:stylesheet>

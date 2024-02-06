@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
         <meta name="theme-color" content="#001826" />
         <title>Icecast Streaming Media Server</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"></link>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha256-MBffSnbbXwHCuZtgPYiwMQbfE7z+GOZ7fBPCNB06Z98=" crossorigin="anonymous" />
         <link href="/assets/style.css" rel="stylesheet" />
         <link href="/status-json.xsl" rel="alternate" type="application/json" />
       </head>
@@ -49,7 +49,8 @@
             <div class="container-fluid">
               <a class="navbar-brand" href="/">
                 <img src="/assets/img/icecast.png" width="32" height="32" class="me-3" alt="Icecast" />
-Icecast Streaming Media Server </a>
+                Icecast Streaming Media Server
+              </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -78,15 +79,14 @@ Icecast Streaming Media Server </a>
         <!-- end index header menu -->
 
         <xsl:text disable-output-escaping="yes">
-&lt;!-- WARNING:
-  DO NOT ATTEMPT TO PARSE ICECAST HTML OUTPUT!
-  The web interface may change completely between releases.
-  If you have a need for automatic processing of server data,
-  please read the appropriate documentation. Latest docs:
-  https://icecast.org/docs/icecast-latest/icecast2_stats.html
---&gt;
+          &lt;!-- WARNING:
+          DO NOT ATTEMPT TO PARSE ICECAST HTML OUTPUT!
+          The web interface may change completely between releases.
+          If you have a need for automatic processing of server data,
+          please read the appropriate documentation. Latest docs:
+          https://icecast.org/docs/icecast-latest/icecast2_stats.html
+          --&gt;
         </xsl:text>
-
         <main class="flex-shrink-0">
           <div class="container">
             <h1 class="mt-3 d-flex justify-content-between">
@@ -102,206 +102,214 @@ Icecast Streaming Media Server </a>
             <!--mount point stats-->
             <xsl:choose>
               <xsl:when test="source">
-
                 <xsl:for-each select="source">
                   <div class="card my-3">
                     <xsl:choose>
                       <xsl:when test="listeners">
-                        <h2 class="card-header">Mount Point <var>
-                          <xsl:value-of select="@mount" />
-                        </var>
-                      </h2>
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                          <div class="audioplayer">
-                            <audio controls="controls" preload="none">
-                              <source src="{@mount}" type="{server_type}" />
-                            </audio>
+                        <h2 class="card-header">Mount Point
+                          <var>
+                            <xsl:value-of select="@mount" />
+                          </var>
+                        </h2>
+                        <div class="card-body">
+                          <div class="d-flex justify-content-between">
+                            <div class="audioplayer">
+                              <audio controls="controls" preload="none">
+                                <source src="{@mount}" type="{server_type}" />
+                              </audio>
+                            </div>
+                            <table class="table">
+                              <tbody>
+                                <xsl:if test="server_name">
+                                  <tr>
+                                    <th scope="row">Stream Name:</th>
+                                    <td>
+                                      <xsl:value-of select="server_name" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="server_description">
+                                  <tr>
+                                    <th scope="row">Stream Description:</th>
+                                    <td>
+                                      <xsl:value-of select="server_description" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="server_type">
+                                  <tr>
+                                    <th scope="row">Content Type:</th>
+                                    <td>
+                                      <xsl:value-of select="server_type" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="stream_start">
+                                  <tr>
+                                    <th scope="row">Stream started:</th>
+                                    <td>
+                                      <xsl:value-of select="stream_start" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="bitrate">
+                                  <tr>
+                                    <th scope="row">Bitrate:</th>
+                                    <td>
+                                      <xsl:value-of select="bitrate" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="quality">
+                                  <tr>
+                                    <th scope="row">Quality:</th>
+                                    <td>
+                                      <xsl:value-of select="quality" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="video_quality">
+                                  <tr>
+                                    <th scope="row">Video Quality:</th>
+                                    <td>
+                                      <xsl:value-of select="video_quality" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="frame_size">
+                                  <tr>
+                                    <th scope="row">Framesize:</th>
+                                    <td>
+                                      <xsl:value-of select="frame_size" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="frame_rate">
+                                  <tr>
+                                    <th scope="row">Framerate:</th>
+                                    <td>
+                                      <xsl:value-of select="frame_rate" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="listeners">
+                                  <tr>
+                                    <th scope="row">Listeners (current):</th>
+                                    <td>
+                                      <xsl:value-of select="listeners" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="listener_peak">
+                                  <tr>
+                                    <th scope="row">Listeners (peak):</th>
+                                    <td>
+                                      <xsl:value-of select="listener_peak" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="genre">
+                                  <tr>
+                                    <th scope="row">Genre:</th>
+                                    <td>
+                                      <xsl:value-of select="genre" />
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <xsl:if test="server_url">
+                                  <tr>
+                                    <th scope="row">Stream URL:</th>
+                                    <td class="streamstats">
+                                      <a href="{server_url}">
+                                        <xsl:value-of select="server_url" />
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </xsl:if>
+                                <tr>
+                                  <th scope="row">Currently playing:</th>
+                                  <td>
+                                    <xsl:if test="artist">
+                                      <xsl:value-of select="artist" />
+                                      -
+                                    </xsl:if>
+                                    <xsl:value-of select="title" />
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </div>
-                          <table class="table">
-                            <tbody>
-                              <xsl:if test="server_name">
-                                <tr>
-                                  <th scope="row">Stream Name:</th>
-                                  <td>
-                                    <xsl:value-of select="server_name" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="server_description">
-                                <tr>
-                                  <th scope="row">Stream Description:</th>
-                                  <td>
-                                    <xsl:value-of select="server_description" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="server_type">
-                                <tr>
-                                  <th scope="row">Content Type:</th>
-                                  <td>
-                                    <xsl:value-of select="server_type" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="stream_start">
-                                <tr>
-                                  <th scope="row">Stream started:</th>
-                                  <td>
-                                    <xsl:value-of select="stream_start" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="bitrate">
-                                <tr>
-                                  <th scope="row">Bitrate:</th>
-                                  <td>
-                                    <xsl:value-of select="bitrate" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="quality">
-                                <tr>
-                                  <th scope="row">Quality:</th>
-                                  <td>
-                                    <xsl:value-of select="quality" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="video_quality">
-                                <tr>
-                                  <th scope="row">Video Quality:</th>
-                                  <td>
-                                    <xsl:value-of select="video_quality" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="frame_size">
-                                <tr>
-                                  <th scope="row">Framesize:</th>
-                                  <td>
-                                    <xsl:value-of select="frame_size" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="frame_rate">
-                                <tr>
-                                  <th scope="row">Framerate:</th>
-                                  <td>
-                                    <xsl:value-of select="frame_rate" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="listeners">
-                                <tr>
-                                  <th scope="row">Listeners (current):</th>
-                                  <td>
-                                    <xsl:value-of select="listeners" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="listener_peak">
-                                <tr>
-                                  <th scope="row">Listeners (peak):</th>
-                                  <td>
-                                    <xsl:value-of select="listener_peak" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="genre">
-                                <tr>
-                                  <th scope="row">Genre:</th>
-                                  <td>
-                                    <xsl:value-of select="genre" />
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <xsl:if test="server_url">
-                                <tr>
-                                  <th scope="row">Stream URL:</th>
-                                  <td class="streamstats">
-                                    <a href="{server_url}">
-                                      <xsl:value-of select="server_url" />
-                                    </a>
-                                  </td>
-                                </tr>
-                              </xsl:if>
-                              <tr>
-                                <th scope="row">Currently playing:</th>
-                                <td>
-                                  <xsl:if test="artist">
-                                    <xsl:value-of select="artist" />
- - </xsl:if>
-                                  <xsl:value-of select="title" />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
                         </div>
-                      </div>
-                      <div class="card-footer text-end">
-                        <div class="btn-group" role="group" aria-label="Stream Format">
-                          <xsl:choose>
-                            <xsl:when test="authenticator">
-                              <a href="/auth.xsl" class="btn btn-warning btn-sm" role="button">
-                                <svg class="bi">
-                                  <use href="#bi-box-arrow-in-right" />
-                                </svg>Login</a>
-                            </xsl:when>
-                            <xsl:otherwise>
-                              <a href="{@mount}.m3u" class="btn btn-outline-primary btn-sm" role="button">
-                                <svg class="bi mr-3">
-                                  <use href="#bi-file-earmark-music" />
-                                </svg>.m3u</a>
-                              <a href="{@mount}.pls" class="btn btn-outline-primary btn-sm" role="button">
-                                <svg class="bi mr-3">
-                                  <use href="#bi-music-note-list" />
-                                </svg>.pls</a>
-                              <a href="{@mount}.xspf" class="btn btn-outline-primary btn-sm" role="button">
-                                <svg class="bi mr-3">
-                                  <use href="#bi-filetype-xml" />
-                                </svg>
-                                <abbr data-bs-toggle="tooltip" title="XML Shareable Playlist Format">.xspf</abbr>
-                              </a>
-                              <a href="{@mount}.vclt" class="btn btn-outline-primary btn-sm" role="button">
-                                <svg class="bi mr-3">
-                                  <use href="#bi-filetype-xml" />
-                                </svg>
-                                <abbr data-bs-toggle="tooltip" title="Vorbis Comment Like Text">VCLT</abbr>
-                              </a>
-                            </xsl:otherwise>
-                          </xsl:choose>
+                        <div class="card-footer text-end">
+                          <div class="btn-group" role="group" aria-label="Stream Format">
+                            <xsl:choose>
+                              <xsl:when test="authenticator">
+                                <a href="/auth.xsl" class="btn btn-warning btn-sm" role="button">
+                                  <svg class="bi">
+                                    <use href="#bi-box-arrow-in-right" />
+                                  </svg>Login
+                                </a>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                <a href="{@mount}.m3u" class="btn btn-outline-primary btn-sm" role="button">
+                                  <svg class="bi mr-3">
+                                    <use href="#bi-file-earmark-music" />
+                                  </svg>.m3u
+                                </a>
+                                <a href="{@mount}.pls" class="btn btn-outline-primary btn-sm" role="button">
+                                  <svg class="bi mr-3">
+                                    <use href="#bi-music-note-list" />
+                                  </svg>.pls
+                                </a>
+                                <a href="{@mount}.xspf" class="btn btn-outline-primary btn-sm" role="button">
+                                  <svg class="bi mr-3">
+                                    <use href="#bi-filetype-xml" />
+                                  </svg>
+                                  <abbr data-bs-toggle="tooltip" title="XML Shareable Playlist Format">.xspf</abbr>
+                                </a>
+                                <a href="{@mount}.vclt" class="btn btn-outline-primary btn-sm" role="button">
+                                  <svg class="bi mr-3">
+                                    <use href="#bi-filetype-xml" />
+                                  </svg>
+                                  <abbr data-bs-toggle="tooltip" title="Vorbis Comment Like Text">VCLT</abbr>
+                                </a>
+                              </xsl:otherwise>
+                            </xsl:choose>
+                          </div>
                         </div>
-                      </div>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <h1 class="card-header">
-                        <var>
-                          <xsl:value-of select="@mount" />
-                        </var> - Not Connected</h1>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </div>
-              </xsl:for-each>
-            </xsl:when>
-            <xsl:otherwise>
-              <div class="alert alert-info" role="alert">No active mount points.</div>
-            </xsl:otherwise>
-          </xsl:choose>
-        </div>
-      </main>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <h1 class="card-header">
+                          <var>
+                            <xsl:value-of select="@mount" />
+                          </var> - Not Connected
+                        </h1>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </div>
+                </xsl:for-each>
+              </xsl:when>
+              <xsl:otherwise>
+                <div class="alert alert-info" role="alert">No active mount points.</div>
+              </xsl:otherwise>
+            </xsl:choose>
+          </div>
+        </main>
 
-      <footer class="footer mt-auto py-3 bg-body-tertiary">
-        <div class="container">
-          <span class="text-body-secondary">Support icecast development at <a href="https://www.icecast.org/">www.icecast.org</a>
-            /
-            <a href="https://github.com/logue/icecast2-bootstrap-theme">Icecast bootstrap theme</a> by <a href="https://logue.dev">Logue</a>
-          </span>
-        </div>
-      </footer>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-      <script src="/assets/scripts.js"></script>
-    </body>
-  </html>
-</xsl:template>
+        <footer class="footer mt-auto py-3 bg-body-tertiary">
+          <div class="container">
+            <span class="text-body-secondary">Support icecast development at
+              <a href="https://www.icecast.org/">www.icecast.org</a>
+              /
+              <a href="https://github.com/logue/icecast2-bootstrap-theme">Icecast bootstrap theme</a> by
+              <a href="https://logue.dev">Logue</a>
+            </span>
+          </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha256-gvZPYrsDwbwYJLD5yeBfcNujPhRoGOY831wwbIzz3t0=" crossorigin="anonymous"></script>
+        <script src="/assets/scripts.js"></script>
+      </body>
+    </html>
+  </xsl:template>
 </xsl:stylesheet>

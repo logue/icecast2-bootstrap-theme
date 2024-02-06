@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
         <meta name="theme-color" content="#001826" />
         <title>Icecast Streaming Media Server</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"></link>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha256-MBffSnbbXwHCuZtgPYiwMQbfE7z+GOZ7fBPCNB06Z98=" crossorigin="anonymous" />
         <link href="/assets/style.css" rel="stylesheet" />
       </head>
 
@@ -65,46 +65,51 @@
                 <xsl:when test="listeners">
                   <xsl:if test="authenticator">
                     <div class="roundbox">
-                      <h2 class="mount">Mount Point <code>
-                        <xsl:value-of select="@mount" />
-                      </code>
-                      <xsl:if test="server_name">
-                        <small>
-                          <xsl:value-of select="server_name" />
-                        </small>
-                      </xsl:if>
-                    </h2>
-                    <form method="get" action="/admin/buildm3u">
-                      <label for="name" class="form-label">Username:</label>
-                      <input id="name" name="username" type="text" class="form-control" />
-                      <label for="password" class="form-label">Password:</label>
-                      <input id="password" name="password" type="password" class="form-control" />
-                      <input type="hidden" name="mount" value="{@mount}" />
-                      <input type="submit" value="Login" />
-                    </form>
-                  </div>
-                </xsl:if>
-              </xsl:when>
-              <xsl:otherwise>
-                <p>
-                  <xsl:value-of select="@mount" />
- - Not Connected</p>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:for-each>
-        </div>
-      </main>
+                      <h2 class="mount">Mount Point
+                        <code>
+                          <xsl:value-of select="@mount" />
+                        </code>
+                        <xsl:if test="server_name">
+                          <small>
+                            <xsl:value-of select="server_name" />
+                          </small>
+                        </xsl:if>
+                      </h2>
+                      <form method="get" action="/admin/buildm3u">
+                        <label for="name" class="form-label">Username:</label>
+                        <input id="name" name="username" type="text" class="form-control" />
+                        <label for="password" class="form-label">Password:</label>
+                        <input id="password" name="password" type="password" class="form-control" />
+                        <input type="hidden" name="mount" value="{@mount}" />
+                        <input type="submit" value="Login" />
+                      </form>
+                    </div>
+                  </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                  <p>
+                    <xsl:value-of select="@mount" />
+                    - Not Connected
+                  </p>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:for-each>
+          </div>
+        </main>
 
-      <footer class="footer mt-auto py-3 bg-body-tertiary">
-        <div class="container">
-          <span class="text-body-secondary">Support icecast development at <a href="https://www.icecast.org/">www.icecast.org</a>
-            /
-            <a href="https://github.com/logue/icecast2-bootstrap-theme">Icecast bootstrap theme</a> by <a href="https://logue.dev">Logue</a>
-          </span>
-        </div>
-      </footer>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    </body>
-  </html>
-</xsl:template>
+        <footer class="footer mt-auto py-3 bg-body-tertiary">
+          <div class="container">
+            <span class="text-body-secondary">Support icecast development at
+              <a href="https://www.icecast.org/">www.icecast.org</a>
+              /
+              <a href="https://github.com/logue/icecast2-bootstrap-theme">Icecast bootstrap theme</a> by
+              <a href="https://logue.dev">Logue</a>
+            </span>
+          </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha256-gvZPYrsDwbwYJLD5yeBfcNujPhRoGOY831wwbIzz3t0=" crossorigin="anonymous"></script>
+      </body>
+    </html>
+  </xsl:template>
 </xsl:stylesheet>
