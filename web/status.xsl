@@ -8,11 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
         <meta name="theme-color" content="#001826" />
         <title>Icecast Streaming Media Server</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha256-PI8n5gCcz9cQqQXm3PEtDuPG8qx9oFsFctPg0S5zb8g=" crossorigin="anonymous"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
         <link href="/assets/style.css" rel="stylesheet" />
         <link href="/status-json.xsl" rel="alternate" type="application/json" />
       </head>
-
       <body class="d-flex flex-column h-100">
         <!-- Icons -->
         <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -42,7 +41,6 @@
             <path fill-rule="evenodd" d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.945 11.945 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0z" />
           </symbol>
         </svg>
-
         <!-- index header menu -->
         <header>
           <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -77,7 +75,6 @@
           </nav>
         </header>
         <!-- end index header menu -->
-
         <xsl:text disable-output-escaping="yes">
           &lt;!-- WARNING:
           DO NOT ATTEMPT TO PARSE ICECAST HTML OUTPUT!
@@ -295,7 +292,6 @@
             </xsl:choose>
           </div>
         </main>
-
         <footer class="footer mt-auto py-3 bg-body-tertiary">
           <div class="container">
             <span class="text-body-secondary">Support icecast development at
@@ -306,8 +302,7 @@
             </span>
           </div>
         </footer>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha256-3gQJhtmj7YnV1fmtbVcnAV6eI4ws0Tr48bVZCThtCGQ=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
         <script src="/assets/scripts.js"></script>
       </body>
     </html>
